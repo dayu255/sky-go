@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 	"time"
+	"slices"
 
 	"github.com/ugjka/go-tz/v2"
 	"github.com/Code-Hex/synchro/iso8601"
@@ -41,10 +42,15 @@ func (qh queryHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	weather := queryParams.Get("weather")
+	weatherTypes := []string{"clear", "sunny", "cloudy", "rain", "snow", "fog", "thunder"}
+	if result := slices.Contains(weatherTypes, weather); result == false {
+		weather = "unknown"
+	}
+
 	w.Write([]byte(t.Format(time.RFC3339)))
+	w.Write([]byte(weather))
 }
-
-
 
 func calTime(longitude float64, latitude float64) (time.Time, error) {
 	zone, err := tz.GetZone(tz.Point{
