@@ -1,0 +1,23 @@
+name: Go static check 
+
+inputs:
+  go-directory:
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Setup go
+      uses: actions/setup-go@v6
+      with:
+        go-version: '1.25'
+
+    - name: go vet
+      shell: bash
+      run: |
+        echo '### go vet summary' >> $GITHUB_STEP_SUMMARY
+        go vet ./... >> $GITHUB_STEP_SUMMARY
+      working-directory: ${{ inputs.go-directory }}
