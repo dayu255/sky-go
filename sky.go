@@ -10,9 +10,9 @@ import (
 	"github.com/Code-Hex/synchro/iso8601"
 )
 
-type HelloHandler struct{}
+type queryHandler struct{}
 
-func (hh HelloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (qh queryHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
@@ -44,6 +44,8 @@ func (hh HelloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(t.Format(time.RFC3339)))
 }
 
+
+
 func calTime(longitude float64, latitude float64) (time.Time, error) {
 	zone, err := tz.GetZone(tz.Point{
 		Lon: longitude, Lat: latitude,
@@ -65,7 +67,7 @@ func main() {
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 90 * time.Second,
 		IdleTimeout:  120 * time.Second,
-		Handler:      HelloHandler{},
+		Handler:      queryHandler{},
 	}
 	log.Println("Listening Port", s.Addr)
 	err := s.ListenAndServe()
