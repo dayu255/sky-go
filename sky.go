@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/ugjka/go-tz/v2"
+	"github.com/Code-Hex/synchro/iso8601"
 )
 
 type HelloHandler struct{}
@@ -18,21 +19,28 @@ func (hh HelloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	queryParams := r.URL.Query()
-	lon, err := strconv.ParseFloat(queryParams.Get("longitude"), 64)
-	if err != nil {
+	
+	t, tErr := iso8601.ParseDateTime(queryParams.Get("time"))
+
+	lon, err := strconv.ParseFloat(queryParams.Get("lon"), 64)
+	if err != nil && tErr != nil {
 		http.Error(w, "Invalid longitude", http.StatusBadRequest)
 		return
 	}
-	lat, err := strconv.ParseFloat(queryParams.Get("latitude"), 64)
-	if err != nil {
+
+	lat, err := strconv.ParseFloat(queryParams.Get("lat"), 64)
+	if err != nil && tErr != nil {
 		http.Error(w, "Invalid latitude", http.StatusBadRequest)
 		return
 	}
 
-	t, err := calTime(lon, lat)
-	if(err != nil) {
-		http.Error(w, "Invalid TimeZone", http.StatusBadRequest)
+	if tErr != nil {
+		t, tErr = calTime(lon, lat)
+		if tErr != nil {
+			http.Error(w, "Invalid query", http.StatusBadRequest)
+		}
 	}
+
 	w.Write([]byte(t.Format(time.RFC3339)))
 }
 

@@ -1,2 +1,6 @@
+github.com/Code-Hex/synchro v0.5.4 h1:aPfgKaQO+Ij32+wegRXUVUkw2kwaQR7SWcEV/hK/s2M=
+github.com/Code-Hex/synchro v0.5.4/go.mod h1:USpQ++dx1+FbEeaDWiTAwOQVALdTel2y6Hy61knSJ6c=
+github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
+github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/ugjka/go-tz/v2 v2.2.8 h1:HXlZnkNvNAkAzcLYQ3V3GP/QqVKTGFU6lmqxUZcZnAE=
 github.com/ugjka/go-tz/v2 v2.2.8/go.mod h1:Jh35OKbERtwjZLWDZ2KgjD+bm5hb9Lx8nVD9Mv9NVzs=
