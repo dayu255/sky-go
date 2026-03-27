@@ -1,4 +1,4 @@
-module sky
+module github.com/dayu255/sky-go
 
 go 1.24.4
 
