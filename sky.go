@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"math"
@@ -8,7 +9,6 @@ import (
 	"slices"
 	"strconv"
 	"time"
-	"encoding/json"
 
 	"github.com/Code-Hex/synchro/iso8601"
 	"github.com/dayu255/sun-level"
@@ -30,14 +30,14 @@ type skyColor struct {
 // }
 
 type skyData struct {
-	Color        skyColor
+	Color       skyColor
 	CssGradient string
-// 	context      skyContext
+	// context      skyContext
 }
 
 type responseData struct {
 	Success bool
-	Data skyData
+	Data    skyData
 }
 
 func clamp(v int) int {
@@ -130,15 +130,14 @@ func (qh queryHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	d := responseData{
 		Success: true,
 		Data: skyData{
-			Color: sky,
+			Color:       sky,
 			CssGradient: fmt.Sprintf("linear-gradient(to bottom, %s, %s, %s, %s)", sky.Color1, sky.Color2, sky.Color3, sky.Color4),
 		},
-	}	
-
+	}
 
 	w.Header().Add("Content-Type", "application/json")
 	w.Header().Add("Access-Control-Allow-Origin", "*")
-	jsonBytes, err :=json.MarshalIndent(d, "", "	")
+	jsonBytes, err := json.MarshalIndent(d, "", "	")
 	if err != nil {
 		w.Write([]byte("Json encoding error."))
 		return
