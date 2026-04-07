@@ -1,5 +1,7 @@
 github.com/Code-Hex/synchro v0.5.4 h1:aPfgKaQO+Ij32+wegRXUVUkw2kwaQR7SWcEV/hK/s2M=
 github.com/Code-Hex/synchro v0.5.4/go.mod h1:USpQ++dx1+FbEeaDWiTAwOQVALdTel2y6Hy61knSJ6c=
+github.com/dayu255/sun-level v0.0.0-20260407090227-ef17ffbf9749 h1:gew3fNQAeLig4i9/AcRXEKDyQvt0faVVHw1Qqbirty4=
+github.com/dayu255/sun-level v0.0.0-20260407090227-ef17ffbf9749/go.mod h1:BDFiY8hegbxCwIVQQX3K51sQ5wFgZcCFhbQO0kDH2PA=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/ugjka/go-tz/v2 v2.2.8 h1:HXlZnkNvNAkAzcLYQ3V3GP/QqVKTGFU6lmqxUZcZnAE=
